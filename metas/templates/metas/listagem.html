@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Listagem</title>
+</head>
+<body>
+    <table>
+        <tr>
+            <th>Nome</th>
+            <th>Data Criação</th>
+            <th>Data Entrega</th>
+            <th>Responsável</th>
+            <th>Setor</th>
+            <th>Descrição</th>
+        </tr>
+        {% for tarefa in tarefas %}
+
+                <tr>
+                    <td><a href="{% url 'url_update' tarefa.id %}">{{ tarefa.nome }}</a></td>
+                    <td>{{ tarefa.data_criacao }}</td>
+                    <td>{{ tarefa.data_entrega }}</td>
+                    <td>{{ tarefa.responsavel }}</td>
+                    <td>{{ tarefa.setor }}</td>
+                    <td>{{ tarefa.descricao }}</td>
+                </tr>
+
+        {% endfor %}
+    </table>
+    <a href="{% url 'url_nova' %}">Nova tarefa</a>
+</body>
+</html>
