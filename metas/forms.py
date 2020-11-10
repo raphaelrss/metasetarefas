@@ -8,7 +8,7 @@ class DateInput(forms.DateInput):
 class TarefaForm(ModelForm):
     class Meta:
         model = Tarefa
-        fields = ['nome', 'data_entrega', 'responsavel', 'setor', 'estado', 'descricao']
+        fields = ['nome', 'data_entrega', 'responsavel', 'setor', 'estado', 'passos', 'descricao']
         widgets = {
             'data_entrega': DateInput(),
         }
@@ -17,3 +17,8 @@ class SetorForm(ModelForm):
     class Meta:
         model = Setor
         fields = ['nome', 'descricao']
+
+class PassoForm(ModelForm):
+    class Meta:
+        model = Passo
+        fields = ['titulo', 'porcentagem', 'descricao']

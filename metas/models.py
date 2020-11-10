@@ -28,6 +28,14 @@ class Estado(models.Model):
     def __str__(self):
         return self.nome
 
+class Passo(models.Model):
+    titulo = models.CharField(max_length=40)
+    porcentagem = models.DecimalField(decimal_places=2, max_digits=4)
+    descricao = models.TextField(null=True, blank=True)
+
+    def __str__(self):
+        return self.titulo
+
 class Tarefa(models.Model):
     nome = models.CharField(max_length=30)
     data_criacao = models.DateField(auto_now_add=True)
@@ -36,6 +44,9 @@ class Tarefa(models.Model):
     setor = models.ForeignKey(Setor, on_delete=models.CASCADE)
     responsavel = models.ForeignKey(Usuario, on_delete=models.CASCADE)
     estado = models.ForeignKey(Estado, on_delete=models.CASCADE)
+    passos = models.ManyToManyField(Passo)
 
     def __str__(self):
         return self.nome
+
+

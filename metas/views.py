@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from .models import *
-from .forms import TarefaForm, SetorForm
+from .forms import TarefaForm, SetorForm, PassoForm
 from django.http import HttpResponse
 
 
@@ -62,3 +62,13 @@ def vermelho(request):
         'tarefas': tarefas,
     }
     return render(request, 'metas/vermelho.html', data)
+
+def novo_passo(request):
+    form = PassoForm(request.POST or None)
+    data = {
+        'form': form
+    }
+    if form.is_valid():
+        form.save()
+        return redirect('url_listagem')
+    return render(request, 'metas/novo_setor.html', data)

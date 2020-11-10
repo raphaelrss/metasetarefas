@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from metas.views import home, listagem, nova_tarefa, update, delete, novo_setor, vermelho
+from metas.views import home, listagem, nova_tarefa, update, delete, novo_setor, vermelho, novo_passo
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -23,6 +23,7 @@ urlpatterns = [
     path('listagem/', listagem, name='url_listagem'),
     path('nova_tarefa/', nova_tarefa, name='url_nova_tarefa'),
     path('novo_setor/', novo_setor, name='url_novo_setor'),
+    path('novo_passo/', novo_passo, name='url_novo_passo'),
     path('update/<int:pk>/', update, name='url_update'),
     path('delete/<int:pk>/', delete, name='url_delete'),
     path('vermelho/', vermelho, name='url_vermelho'),

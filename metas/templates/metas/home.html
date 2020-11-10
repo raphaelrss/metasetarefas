@@ -8,10 +8,11 @@
     <title>Home</title>
 </head>
 <body>
-    <h1>Essa é a home da nossa aplicação.</h1>
-    <a href="{% url 'url_nova_tarefa' %}">Nova tarefa</a>
-    <a href="{% url 'url_novo_setor' %}">Novo Setor</a>
-    <a href="{% url 'url_vermelho' %}">Tarefas em Vermelho</a>
-    <a href="{% url 'url_listagem' %}">Listagem</a>
+    {% block conteudo %}
+        <h1>Esta é a Home</h1>
+        <a href="{% url 'url_nova_tarefa' %}">Nova tarefa</a>
+        <a href="{% url 'url_novo_setor' %}">Novo Setor</a>
+        <a href="{% url 'url_listagem' %}">Listagem</a>
+    {% endblock %}
 </body>
 </html>
