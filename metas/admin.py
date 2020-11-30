@@ -5,5 +5,4 @@ admin.site.register(Setor)
 admin.site.register(Usuario)
 admin.site.register(Tarefa)
 admin.site.register(Estado)
-admin.site.register(Passo)
 

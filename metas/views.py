@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from .models import *
-from .forms import TarefaForm, SetorForm, PassoForm
+from .forms import TarefaForm
 from django.http import HttpResponse
 
 
@@ -45,30 +45,3 @@ def delete(request, pk):
     tarefa = Tarefa.objects.get(pk=pk)
     tarefa.delete()
     return redirect('url_listagem')
-
-def novo_setor(request):
-    form = SetorForm(request.POST or None)
-    data = {
-        'form': form
-    }
-    if form.is_valid():
-        form.save()
-        return redirect('url_listagem')
-    return render(request, 'metas/novo_setor.html', data)
-
-def vermelho(request):
-    tarefas = Tarefa.objects.filter(estado=1)
-    data = {
-        'tarefas': tarefas,
-    }
-    return render(request, 'metas/vermelho.html', data)
-
-def novo_passo(request):
-    form = PassoForm(request.POST or None)
-    data = {
-        'form': form
-    }
-    if form.is_valid():
-        form.save()
-        return redirect('url_listagem')
-    return render(request, 'metas/novo_setor.html', data)

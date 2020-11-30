@@ -1,30 +1,148 @@
 <!doctype html>
 {% extends "metas/home.html" %}
 {% block conteudo%}
-    <table>
-        <tr>
-            <th>Nome</th>
-            <th>Data Criação</th>
-            <th>Data Entrega</th>
-            <th>Responsável</th>
-            <th>Setor</th>
-            <th>Status</th>
-            <th>Descrição</th>
-        </tr>
-        {% for tarefa in tarefas %}
+<main class="container">
 
+    <div class="row">
+        <div class="col-12 titulo">
+            <h1>Vermelho</h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <table>
                 <tr>
-                    <td><a href="{% url 'url_update' tarefa.id %}">{{ tarefa.nome }}</a></td>
-                    <td>{{ tarefa.data_criacao }}</td>
-                    <td>{{ tarefa.data_entrega }}</td>
-                    <td>{{ tarefa.responsavel }}</td>
-                    <td>{{ tarefa.setor }}</td>
-                    <td>{{ tarefa.estado }}</td>
-                    <td>{{ tarefa.descricao }}</td>
+                    <th>Nome</th>
+                    <th>Data Criação</th>
+                    <th>Data Entrega</th>
+                    <th>Responsável</th>
+                    <th>Setor</th>
+                    <th>Status</th>
+                    <th>Descrição</th>
                 </tr>
+                {% for tarefa in tarefas %}
+                    {% if tarefa.estado.nome == 'Vermelho' and tarefa.terminada == False %}
+                        <tr bgcolor="red">
+                            <td><a href="{% url 'url_update' tarefa.id %}">{{ tarefa.nome }}</a></td>
+                            <td>{{ tarefa.data_criacao }}</td>
+                            <td>{{ tarefa.data_entrega }}</td>
+                            <td>{{ tarefa.responsavel }}</td>
+                            <td>{{ tarefa.setor }}</td>
+                            <td>{{ tarefa.estado }}</td>
+                            <td>{{ tarefa.descricao }}</td>
+                        </tr>
+                    {% endif %}
+                {% endfor %}
+            </table>
+        </div>
+    </div>
 
-        {% endfor %}
-    </table>
-    <a href="{% url 'url_nova_tarefa' %}">Nova tarefa</a>
-    <a href="{% url 'url_novo_setor' %}">Novo Setor</a>
+    <div class="row">
+        <div class="col-12 titulo">
+            <h1>Amarelo</h1>
+        </div>
+    </div>
+    <div class="row">    
+        <div class="col-12">
+            <table>
+                <tr>
+                    <th>Nome</th>
+                    <th>Data Criação</th>
+                    <th>Data Entrega</th>
+                    <th>Responsável</th>
+                    <th>Setor</th>
+                    <th>Status</th>
+                    <th>Descrição</th>
+                </tr>
+                {% for tarefa in tarefas %}
+                    {% if tarefa.estado.nome == 'Amarelo' and tarefa.terminada == False %}
+                        <tr bgcolor="yellow">
+                            <td><a href="{% url 'url_update' tarefa.id %}">{{ tarefa.nome }}</a></td>
+                            <td>{{ tarefa.data_criacao }}</td>
+                            <td>{{ tarefa.data_entrega }}</td>
+                            <td>{{ tarefa.responsavel }}</td>
+                            <td>{{ tarefa.setor }}</td>
+                            <td>{{ tarefa.estado }}</td>
+                            <td>{{ tarefa.descricao }}</td>
+                        </tr>
+                    {% endif %}
+                {% endfor %}
+            </table>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-12 titulo">
+            <h1>Verde</h1>
+        </div>
+    </div>
+    <div class="row">    
+        <div class="col-12">
+            <table>
+                <tr>
+                    <th>Nome</th>
+                    <th>Data Criação</th>
+                    <th>Data Entrega</th>
+                    <th>Responsável</th>
+                    <th>Setor</th>
+                    <th>Status</th>
+                    <th>Descrição</th>
+                </tr>
+                {% for tarefa in tarefas %}
+                    {% if tarefa.estado.nome == 'Verde' and tarefa.terminada == False%}
+                        <tr bgcolor="green">
+                            <td><a href="{% url 'url_update' tarefa.id %}">{{ tarefa.nome }}</a></td>
+                            <td>{{ tarefa.data_criacao }}</td>
+                            <td>{{ tarefa.data_entrega }}</td>
+                            <td>{{ tarefa.responsavel }}</td>
+                            <td>{{ tarefa.setor }}</td>
+                            <td>{{ tarefa.estado }}</td>
+                            <td>{{ tarefa.descricao }}</td>
+                        </tr>
+                    {% endif %}
+                {% endfor %}
+            </table>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-12 titulo">
+            <h1>Entregues</h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <table>
+                <tr>
+                    <th>Nome</th>
+                    <th>Data Criação</th>
+                    <th>Data Entrega</th>
+                    <th>Responsável</th>
+                    <th>Setor</th>
+                    <th>Status</th>
+                    <th>Descrição</th>
+                </tr>
+                {% for tarefa in tarefas %}
+                    {% if tarefa.terminada %}
+                        <tr bgcolor="blue">
+                            <td><a href="{% url 'url_update' tarefa.id %}">{{ tarefa.nome }}</a></td>
+                            <td>{{ tarefa.data_criacao }}</td>
+                            <td>{{ tarefa.data_entrega }}</td>
+                            <td>{{ tarefa.responsavel }}</td>
+                            <td>{{ tarefa.setor }}</td>
+                            <td>{{ tarefa.estado }}</td>
+                            <td>{{ tarefa.descricao }}</td>
+                        </tr>
+                    {% endif %}
+                {% endfor %}
+            </table>
+        </div>
+    </div>
+
+    <div class="row links">
+        <div class="col-12">
+            <a href="{% url 'url_nova_tarefa' %}">Nova tarefa</a>
+        </div>
+    </div>
+</main>
 {% endblock %}
