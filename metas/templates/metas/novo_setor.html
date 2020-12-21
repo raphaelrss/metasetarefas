@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pt_BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Novo Setor</title>
+    <link rel="icon" href="/imagem/BR abrasel.png">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+        crossorigin="anonymous">
+    <link rel="stylesheet" href="main.css">
+  </head>
+  <body>
+    {% block conteudo %} 
+    <div class="container bg-light rounded border border-dark">
+        <div class="row">
+            <form method="post"></form>
+                <div class="col">
+                    <div class="form-group">
+                        <label for="input">% csrf_token % / setor</label>
+                        <input type="textarea" class="form-control" id="input" aria-describedby="setor?" placeholder="Insira o setor a ser adicionado">
+                        <!--{% csrf_token %}!-->
+                    </div>
+                </div>
+                <div class="w-100"></div>
+                <div class="col"> 
+                    <div class="form-group">
+                        <label for="input">{{ form.as_p }}</label>
+                        <input type="textarea" class="form-control" id="input" aria-describedby="outroinput" placeholder="nao sei?">
+                        <!--{{ form.as_p }}!-->
+                    </div>
+                </div>
+                <div class="w-100"></div>
+                <div class="col"> 
+                    <button class="btn btn-dark mb-3">Salvar</button>
+                    <button class="btn btn-dark mb-3 ml-2" onclick="voltar()">Voltar</button>
+                </div>
+            </form>
+        </div> 
+    </div>
+    {% endblock %}
+    
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
+    <script>
+        function voltar(){
+        window.history.back();
+        }
+    </script>
+  </body>
+</html>

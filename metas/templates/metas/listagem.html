@@ -1,15 +1,9 @@
-<!doctype html>
+<!DOCTYPE html>
 {% extends "metas/home.html" %}
 {% block conteudo%}
-<main class="container">
-
+<div class="container bg-light rounded border border-dark">
     <div class="row">
-        <div class="col-12 titulo">
-            <h1>Vermelho</h1>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-12">
+        <div class="col-8">
             <table>
                 <tr>
                     <th>Nome</th>
@@ -21,8 +15,8 @@
                     <th>Descrição</th>
                 </tr>
                 {% for tarefa in tarefas %}
-                    {% if tarefa.estado.nome == 'Vermelho' and tarefa.terminada == False %}
-                        <tr bgcolor="red">
+                    {% if tarefa.estado.nome == 'Vermelho' %}
+                        <tr bgcolor="Red">
                             <td><a href="{% url 'url_update' tarefa.id %}">{{ tarefa.nome }}</a></td>
                             <td>{{ tarefa.data_criacao }}</td>
                             <td>{{ tarefa.data_entrega }}</td>
@@ -36,26 +30,11 @@
             </table>
         </div>
     </div>
-
-    <div class="row">
-        <div class="col-12 titulo">
-            <h1>Amarelo</h1>
-        </div>
-    </div>
-    <div class="row">    
-        <div class="col-12">
+    <div class="row mt-3 mb-3">    
+        <div class="col-8">
             <table>
-                <tr>
-                    <th>Nome</th>
-                    <th>Data Criação</th>
-                    <th>Data Entrega</th>
-                    <th>Responsável</th>
-                    <th>Setor</th>
-                    <th>Status</th>
-                    <th>Descrição</th>
-                </tr>
                 {% for tarefa in tarefas %}
-                    {% if tarefa.estado.nome == 'Amarelo' and tarefa.terminada == False %}
+                    {% if tarefa.estado.nome == 'Amarelo' %}
                         <tr bgcolor="yellow">
                             <td><a href="{% url 'url_update' tarefa.id %}">{{ tarefa.nome }}</a></td>
                             <td>{{ tarefa.data_criacao }}</td>
@@ -69,27 +48,12 @@
                 {% endfor %}
             </table>
         </div>
-    </div>
-
-    <div class="row">
-        <div class="col-12 titulo">
-            <h1>Verde</h1>
-        </div>
-    </div>
-    <div class="row">    
-        <div class="col-12">
+    </div>    
+    <div class="row ">    
+        <div class="col-8">
             <table>
-                <tr>
-                    <th>Nome</th>
-                    <th>Data Criação</th>
-                    <th>Data Entrega</th>
-                    <th>Responsável</th>
-                    <th>Setor</th>
-                    <th>Status</th>
-                    <th>Descrição</th>
-                </tr>
                 {% for tarefa in tarefas %}
-                    {% if tarefa.estado.nome == 'Verde' and tarefa.terminada == False%}
+                    {% if tarefa.estado.nome == 'Verde' %}
                         <tr bgcolor="green">
                             <td><a href="{% url 'url_update' tarefa.id %}">{{ tarefa.nome }}</a></td>
                             <td>{{ tarefa.data_criacao }}</td>
@@ -104,45 +68,141 @@
             </table>
         </div>
     </div>
-
-    <div class="row">
-        <div class="col-12 titulo">
-            <h1>Entregues</h1>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-12">
-            <table>
-                <tr>
-                    <th>Nome</th>
-                    <th>Data Criação</th>
-                    <th>Data Entrega</th>
-                    <th>Responsável</th>
-                    <th>Setor</th>
-                    <th>Status</th>
-                    <th>Descrição</th>
-                </tr>
-                {% for tarefa in tarefas %}
-                    {% if tarefa.terminada %}
-                        <tr bgcolor="blue">
-                            <td><a href="{% url 'url_update' tarefa.id %}">{{ tarefa.nome }}</a></td>
-                            <td>{{ tarefa.data_criacao }}</td>
-                            <td>{{ tarefa.data_entrega }}</td>
-                            <td>{{ tarefa.responsavel }}</td>
-                            <td>{{ tarefa.setor }}</td>
-                            <td>{{ tarefa.estado }}</td>
-                            <td>{{ tarefa.descricao }}</td>
-                        </tr>
-                    {% endif %}
-                {% endfor %}
-            </table>
-        </div>
-    </div>
-
     <div class="row links">
         <div class="col-12">
-            <a href="{% url 'url_nova_tarefa' %}">Nova tarefa</a>
+            <button type="button" class="btn btn-dark mt-3 mb-2 ml-1" data-toggle="modal" data-target="#modalNovaTarefa">Nova Tarefa</button>
+            <button type="button" class="btn btn-dark mt-3 mb-2 ml-1" data-toggle="modal" data-target="#modalContato">Entrar em contato</button>
+            <button class="btn btn-dark mt-3 mb-2 ml-1" onclick="location.href='{% url 'url_home' %}';">Voltar</button>
         </div>
     </div>
-</main>
+</div>
+
+<!-- MODAL Nova Tarefa-->
+<div class="modal fade" id="modalNovaTarefa" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Nova Tarefa</h5>
+                <button type="button" class="close" data-dismiss="modal">
+                    <span>&times;</span> <!-- &times; -->
+                </button>
+            </div>
+
+            <div class="modal-body">
+                <div class="row">
+                    <form method="post">
+                        <!--
+                        <div class="col">
+                            <div class="form-group">
+                                <label for="input">% csrf_token % / Nome da Tarefa </label>
+                                <input type="textarea" class="form-control" id="input" aria-describedby="setor?" placeholder="Insira a nova tarefa">
+
+                            </div>
+                        </div>
+                        <div class="w-100"></div>
+                        <div class="col">
+                            <div class="form-group">
+                                <label for="input">{{ form.as_p }}</label>
+                                <input type="textarea" class="form-control" id="input" aria-describedby="outroinput" placeholder="nao sei?">
+
+                            </div>
+                        </div>
+                        <div class="w-100"></div>
+                        <div class="col">
+                            <div class="form-group">
+                                <label for="input">Data de Inicio</label>
+                                <input class="form-control" type="date" value="2020-12-22" id="example-date-input">
+                            </div>
+                        </div>
+                        <div class="w-100"></div>
+                        <div class="col">
+                            <div class="form-group">
+                                <label for="input">Data de Entrega</label>
+                                <input class="form-control" type="date" value="2020-12-22" id="example-date-input">
+                            </div>
+                        </div>
+                        <div class="w-100"></div>
+                        <div class="col">
+                            <div class="form-group">
+                                <label for="input">Descrição</label>
+                                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Breve descrição"></textarea>
+                            </div>
+                        </div>
+                        -->
+                        {% csrf_token %}
+                        {{ form.as_p }}
+
+                        <button class="btn btn-dark mr-auto" type="submit">Salvar</button>
+                        <button type="button" class="btn btn-dark" data-dismiss="modal">Fechar</button>
+
+                    </form>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!-- MODAL Contato-->
+
+<div class="modal fade" id="modalContato" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Contato</h5>
+                <button type="button" class="close" data-dismiss="modal">
+                    <span>&times;</span> <!-- &times; -->
+                </button>
+            </div>
+
+            <div class="modal-body">
+                <div class="row">
+                    <form method="post">
+                        <!--
+                        <div class="col">
+                            <div class="form-group">
+                                <label for="input">Nome</label>
+                                <input type="textarea" class="form-control" id="input" aria-describedby="pessoaParaContato" placeholder="Insira o nome">
+                            </div>
+                        </div>
+                        <div class="w-100"></div>
+                        <div class="col">
+                            <div class="form-group">
+                                <label for="input">Para quem enviar?</label>
+                                <input type="textarea" class="form-control" id="input" aria-describedby="pessoaParaEnviar" placeholder="Quem irá receber a mensagem?">
+
+                            </div>
+                        </div>
+                        <div class="w-100"></div>
+                        <div class="col">
+                            <div class="form-group">
+                                <label for="input">Assunto</label>
+                                <input type="textarea" class="form-control" id="input" aria-describedby="assunto" placeholder="Qual o assunto?">
+                            </div>
+                        </div>
+                        <div class="w-100"></div>
+                        <div class="col">
+                            <div class="form-group">
+                                <label for="input">Descrição</label>
+                                <textarea class="form-control" rows="3" placeholder="Breve descrição"></textarea>
+                            </div>
+                        </div>
+                        -->
+
+                        {% csrf_token %}
+                        {{ formContato.as_p }}
+                        <button class="btn btn-dark mr-auto" type="submit">Enviar</button>
+                        <button type="button" class="btn btn-dark" data-dismiss="modal">Fechar</button>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 {% endblock %}

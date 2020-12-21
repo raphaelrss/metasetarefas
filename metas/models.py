@@ -41,4 +41,12 @@ class Tarefa(models.Model):
     def __str__(self):
         return self.nome
 
+class Contato(models.Model):
+    titulo = models.CharField(max_length=40)
+    data_criacao = models.DateField(auto_now_add=True)
+    para_quem_enviar = models.ManyToManyField(Usuario)
+    assunto = models.ForeignKey(Tarefa, on_delete=models.CASCADE)
+    descricao = models.TextField()
 
+    def __str__(self):
+        return self.titulo

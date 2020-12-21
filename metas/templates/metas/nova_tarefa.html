@@ -1,7 +1,108 @@
-{% block conteudo %}
-    <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Salvar</button>
-    </form>
-{% endblock %}
+<!DOCTYPE html>
+<html lang="pt_BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Nova Tarefa</title>
+    <link rel="icon" href="/imagem/BR abrasel.png">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+        crossorigin="anonymous">
+    <link rel="stylesheet" href="main.css">
+  </head>
+  <body>
+  {% extends "metas/home.html" %}
+  {% block conteudo %}
+    <!--<div class="container bg-light rounded border border-dark">
+        <div class="row">
+            <form method="post">
+
+                <div class="col">
+                    <div class="form-group">
+                        <label for="input">% csrf_token % / tarefa </label>
+                        <input type="textarea" class="form-control" id="input" aria-describedby="setor?" placeholder="Insira a nova tarefa">
+
+                    </div>
+                </div>
+                <div class="w-100"></div>
+                <div class="col"> 
+                    <div class="form-group">
+
+                        <label for="input">{{ form.as_p }}</label>
+                        <input type="textarea" class="form-control" id="input" aria-describedby="outroinput" placeholder="nao sei?">
+
+                    </div>
+                </div>
+                <div class="w-100"></div>
+                <div class="col">
+                    <div class="form-group">
+                        <label for="input">Data de Inicio</label>
+                        <input class="form-control" type="date" value="2020-12-22" id="example-date-input">
+                    </div>
+                </div>
+                <div class="w-100"></div>
+                <div class="col">
+                    <div class="form-group">
+                        <label for="input">Data de Entrega</label>
+                        <input class="form-control" type="date" value="2020-12-22" id="example-date-input">
+                    </div>
+                </div>
+                <div class="w-100"></div>
+                <div class="col">
+                    <div class="form-group">
+                        <label for="input">Descrição</label>
+                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Breve descrição"></textarea>
+                    </div>
+                </div>
+
+                {% csrf_token %}
+                {{ form.as_p }}
+
+
+                <div class="w-100"></div>
+                <div class="col"> 
+                    <button class="btn btn-dark mb-3">Salvar</button>
+                    <button class="btn btn-dark mb-3 ml-2" onclick="voltar()">Voltar</button>
+                </div>
+            </form>  se o salvar nao funcionar,testar trocar o div abaixo com o form.
+        </div>
+
+        
+        
+    </div>
+    -->
+
+  <div class="modal fade" id="modalNovaTarefa" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Nova Tarefa</h5>
+                    <button type="button" class="close" data-dismiss="modal">
+                        <span>&times;</span> <!-- &times; -->
+                    </button>
+                </div>
+
+                <div class="modal-body">
+                    <div class="row">
+                        <form method="post">
+
+                            {% csrf_token %}
+                            {{ form.as_p }}
+
+                        </form> <!-- se o salvar nao funcionar,testar trocar o div abaixo com o form.-->
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button class="btn btn-dark mr-auto">Salvar</button>
+                    <button type="button" class="btn btn-dark" data-dismiss="modal">Fechar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+  {% endblock %}
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  </body>
+</html>

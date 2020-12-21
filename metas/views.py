@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from .models import *
-from .forms import TarefaForm
+from .forms import TarefaForm, ContatoForm
 from django.http import HttpResponse
 
 
@@ -9,9 +9,22 @@ def home(request):
 
 
 def listagem(request):
+    form = TarefaForm(request.POST or None)
+    contatoForm = ContatoForm(request.POST or None)
     data = {
         'tarefas': Tarefa.objects.all(),
+        'form': form,
+        'formContato': contatoForm,
     }
+    if contatoForm.is_valid():
+        contatoForm.save()
+
+        return redirect('url_listagem')
+
+    if form.is_valid():
+        form.save()
+        return redirect('url_listagem')
+
     return render(request, 'metas/listagem.html', data)
 
 
@@ -45,3 +58,10 @@ def delete(request, pk):
     tarefa = Tarefa.objects.get(pk=pk)
     tarefa.delete()
     return redirect('url_listagem')
+
+def lista_contatos(request):
+    contatos = Contato.objects.all()
+    data = {
+        'contatos': contatos,
+    }
+    return render(request, 'metas/contatos.html', data)

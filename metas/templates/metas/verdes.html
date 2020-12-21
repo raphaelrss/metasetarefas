@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="pt_BR">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Processos Verdes</title>
+        <link rel="icon" href="/imagem/BR abrasel.png">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+            crossorigin="anonymous">
+      </head>
+    <body>
+        {% block conteudo %}
+        <div class="container">
+            <div class="row">
+                <div class="col-9 bg-success rounded border border-dark">
+                    <table>
+                        <tr>
+                            <th>Nome</th>
+                            <th>Data Criação</th>
+                            <th>Data Entrega</th>
+                            <th>Responsável</th>
+                            <th>Setor</th>
+                            <th>Status</th>
+                            <th>Descrição</th>
+                        </tr>
+                        {% for tarefa in tarefas %}
+    
+                                <tr>
+                                    <td><a href="{% url 'url_update' tarefa.id %}">{{ tarefa.nome }}</a></td>
+                                    <td>{{ tarefa.data_criacao }}</td>
+                                    <td>{{ tarefa.data_entrega }}</td>
+                                    <td>{{ tarefa.responsavel }}</td>
+                                    <td>{{ tarefa.setor }}</td>
+                                    <td>{{ tarefa.estado }}</td>
+                                    <td>{{ tarefa.descricao }}</td>
+                                </tr>
+    
+                        {% endfor %}
+                    </table>  
+
+                    <button type="button" class="btn btn-dark mt-3 mb-2 ml-1" data-toggle="modal" data-target="#modalContato">Entrar em contato</button>
+                    <button class="btn btn-dark mt-3 mb-2 ml-1" onclick="voltar()">Voltar</button>
+
+
+                    
+                </div>
+            </div>
+        </div>
+        <p></p>
+    {% endblock %}
+    
+
+
+    
+
+  </div>
+
+          <!-- MODAL Contato-->
+          <div class="modal fade" id="modalContato" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Contato</h5>
+                        <button type="button" class="close" data-dismiss="modal">
+                            <span>&times;</span> <!-- &times; -->
+                        </button>
+                    </div>
+    
+                    <div class="modal-body">
+                        <div class="row">
+                            <form method="post"></form>
+                                <div class="col">
+                                    <div class="form-group">
+                                        <label for="input">Nome</label>
+                                        <input type="textarea" class="form-control" id="input" aria-describedby="pessoaParaContato" placeholder="Insira o nome">
+                                    </div>
+                                </div>
+                                <div class="w-100"></div>
+                                <div class="col"> 
+                                    <div class="form-group">
+                                        <label for="input">Para quem enviar?</label>
+                                        <input type="textarea" class="form-control" id="input" aria-describedby="pessoaParaEnviar" placeholder="Quem irá receber a mensagem?">
+
+                                    </div>
+                                </div>
+                                <div class="w-100"></div>
+                                <div class="col"> 
+                                    <div class="form-group">
+                                        <label for="input">Assunto</label>
+                                        <input type="textarea" class="form-control" id="input" aria-describedby="assunto" placeholder="Qual o assunto?">
+                                    </div>
+                                </div>
+                                <div class="w-100"></div>
+                                <div class="col"> 
+                                    <div class="form-group">
+                                        <label for="input">Descrição</label>
+                                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Breve descrição"></textarea>
+                                    </div>
+                                </div>
+
+    
+                                
+                            </form> <!-- se o salvar nao funcionar,testar trocar o div abaixo com o form.-->
+                        </div>
+                    </div>
+    
+                    <div class="modal-footer">
+                        <button class="btn btn-dark mr-auto">Enviar</button>
+                        <button type="button" class="btn btn-dark" data-dismiss="modal">Fechar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <script>
+        function voltar(){
+        window.history.back();
+        }
+    </script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+    </body>
+</html>

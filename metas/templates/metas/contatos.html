@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+{% extends "metas/home.html" %}
+{% block conteudo%}
+
+<table>
+    <tr>
+        <th>Titulo</th>
+        <th>Data Criação</th>
+        <th>Assunto</th>
+        <th>Remetentes</th>
+        <th>Descrição</th>
+    </tr>
+    {% for contato in contatos %}
+        <tr>
+            <td>{{ contato.titulo }}</td>
+            <td>{{ contato.data_criacao }}</td>
+            <td>{{ contato.assunto.nome }}</td>
+            <td>
+                {{ contato.para_quem_enviar }}
+            </td>
+            <td>{{ contato.descricao }}</td>
+        </tr>
+    {% endfor %}
+</table>
+
+{% endblock %}

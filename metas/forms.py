@@ -12,3 +12,8 @@ class TarefaForm(ModelForm):
         widgets = {
             'data_entrega': DateInput(),
         }
+
+class ContatoForm(ModelForm):
+    class Meta:
+        model = Contato
+        fields = ['titulo', 'para_quem_enviar', 'assunto', 'descricao']
