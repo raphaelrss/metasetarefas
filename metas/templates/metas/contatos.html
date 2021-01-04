@@ -3,24 +3,26 @@
 {% block conteudo%}
 
 <table>
-    <tr>
-        <th>Titulo</th>
-        <th>Data Criação</th>
-        <th>Assunto</th>
-        <th>Remetentes</th>
-        <th>Descrição</th>
+    <tr scope="row">
+        <th scope="col">Titulo</th>
+        <th scope="col">Data Criação</th>
+        <th scope="col">Assunto</th>
+        <th scope="col">Destinatários</th>
+        <th scope="col">Descrição</th>
     </tr>
     {% for contato in contatos %}
-        <tr>
-            <td>{{ contato.titulo }}</td>
-            <td>{{ contato.data_criacao }}</td>
-            <td>{{ contato.assunto.nome }}</td>
-            <td>
-                {{ contato.para_quem_enviar }}
+        <tr scope="row">
+            <td scope="col">{{ contato.titulo }}</td>
+            <td scope="col">{{ contato.data_criacao }}</td>
+            <td scope="col">{{ contato.assunto.nome }}</td>
+            <td scope="col">
+                {% for destinatario in contato.para_quem_enviar.all %}
+                    {{ destinatario.nome }}
+                {% endfor %}
             </td>
-            <td>{{ contato.descricao }}</td>
+            <td scope="col">{{ contato.descricao }}</td>
         </tr>
     {% endfor %}
 </table>
-
+<button class="btn btn-dark mt-3 mb-2 ml-1" onclick="location.href='{% url 'url_home' %}';">Voltar</button>
 {% endblock %}

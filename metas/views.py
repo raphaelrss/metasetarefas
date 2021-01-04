@@ -1,7 +1,6 @@
 from django.shortcuts import render, redirect
 from .models import *
 from .forms import TarefaForm, ContatoForm
-from django.http import HttpResponse
 
 
 def home(request):
