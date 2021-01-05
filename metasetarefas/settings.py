@@ -26,7 +26,9 @@ SECRET_KEY = '+4ta%0ta#y&urqbz6*58w1*1uq4!l0!y6u$qyz*2f9=4lcl0g%'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    'django-desafio-conjunto.herokuapp.com',
+]
 
 
 # Application definition
