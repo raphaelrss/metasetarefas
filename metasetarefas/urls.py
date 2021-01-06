@@ -15,15 +15,15 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from metas.views import home, listagem, nova_tarefa, update, delete, lista_contatos
+from metas import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', home, name='url_home'),
-    path('listagem/', listagem, name='url_listagem'),
-    path('nova_tarefa/', nova_tarefa, name='url_nova_tarefa'),
-    path('update/<int:pk>/', update, name='url_update'),
-    path('delete/<int:pk>/', delete, name='url_delete'),
-    path('lista_contatos/', lista_contatos, name='url_lista_contatos'),
+    path('', views.home, name='url_home'),
+    path('listagem/', views.listagem, name='url_listagem'),
+    path('nova_tarefa/', views.nova_tarefa, name='url_nova_tarefa'),
+    path('update/<int:pk>/', views.update, name='url_update'),
+    path('delete/<int:pk>/', views.delete, name='url_delete'),
+    path('lista_contatos/', views.lista_contatos, name='url_lista_contatos'),
     path('accounts/', include('django.contrib.auth.urls')),
 ]
